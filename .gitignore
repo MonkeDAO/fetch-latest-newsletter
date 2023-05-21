@@ -1,0 +1,6 @@
+.env
+secrets.json
+secrets*.json
+.history/
+node_modules/
+```
