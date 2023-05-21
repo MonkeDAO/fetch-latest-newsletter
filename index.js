@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const latest = require("./api/latest");
-
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
 app.use(express.json({ extended: false }));
 
 app.use("/api/latest", latest);
