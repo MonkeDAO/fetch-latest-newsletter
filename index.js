@@ -1,21 +1,10 @@
-const fetchLatestNewsletter = require('./fetcher');
-const express = require('express')
+const express = require("express");
+const app = express();
+const latest = require("./api/latest");
 
-const app = express()
-const PORT = 4000
+app.use(express.json({ extended: false }));
 
-app.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT} `)
-})
+app.use("/api/latest", latest);
 
-app.get('/', async (req, res) => {
-    const latestNewsletter = await fetchLatestNewsletter()
-    res.send(latestNewsletter)
-    //res.send('Latest Newsletter API')
-})
-app.get('/latest', async (req, res) => {
-    const latestNewsletter = await fetchLatestNewsletter()
-    res.send(latestNewsletter)
-})
-
-module.exports = app
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
