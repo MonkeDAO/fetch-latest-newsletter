@@ -9,6 +9,9 @@ app.listen(PORT, () => {
 })
 
 app.get('/', async (req, res) => {
+    res.send('Latest Newsletter API')
+})
+app.get('/latest', async (req, res) => {
     const latestNewsletter = await fetchLatestNewsletter()
     res.send(latestNewsletter)
 })
